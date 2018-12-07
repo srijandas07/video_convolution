@@ -1,4 +1,5 @@
 Action Recognition
+
 Video analysis using frame-level convolution follwed by mx-min aggregation.
 
 Requirement - 
