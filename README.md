@@ -1,3 +1,6 @@
+Action Recognition
+Video analysis using frame-level convolution follwed by mx-min aggregation.
+
 Requirement - 
 Python 2.7
 Keras 2.0 with tensorflow 1.5.0 in the back-end.
