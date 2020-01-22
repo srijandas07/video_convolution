@@ -47,12 +47,12 @@ def data_load_batch(k, batch_size_imgs):
     t_file = np.asarray(t_file)
     return t_file
 
-for i in range(0, len(n_files)/batch_size_imgs):
+for i in range(0, int(len(n_files)/batch_size_imgs)):
     images = data_load_batch(k, batch_size_imgs)
     features_conv5.append(model.predict(images, batch_size=batch_size))
     k = k + batch_size_imgs
 features_conv5 = np.asarray(features_conv5)
-features_conv5 = np.reshape(features_conv5, [len(n_files)/batch_size_imgs*batch_size_imgs, f_size])
+features_conv5 = np.reshape(features_conv5, [int(len(n_files)/batch_size_imgs*batch_size_imgs), f_size])
 images_remain = len(n_files) - k
 features_conv5_remain = []
 if images_remain > 0:
@@ -61,8 +61,5 @@ if images_remain > 0:
 features_conv5_remain = np.asarray(features_conv5_remain)
 features_conv5_remain = np.squeeze(features_conv5_remain)
 features_conv5 = np.vstack([features_conv5, features_conv5_remain])
-#frame_no = range(1, len(features_conv5)+1)
-#frame_no = np.asarray(frame_no)
-#frame_no = np.expand_dims(frame_no, axis=1)
-#features_conv5 = np.hstack([frame_no, features_conv5])
+
 np.savetxt(args.output_location+f_p+'.csv.gz', features_conv5, delimiter=',')
