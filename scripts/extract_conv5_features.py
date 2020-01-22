@@ -52,7 +52,7 @@ for i in range(0, int(len(n_files)/batch_size_imgs)):
     features_conv5.append(model.predict(images, batch_size=batch_size))
     k = k + batch_size_imgs
 features_conv5 = np.asarray(features_conv5)
-features_conv5 = np.reshape(features_conv5, [int(len(n_files)/batch_size_imgs*batch_size_imgs), f_size])
+features_conv5 = np.reshape(features_conv5, [features_conv5.shape[0]*features_conv5.shape[1], f_size])
 images_remain = len(n_files) - k
 features_conv5_remain = []
 if images_remain > 0:
